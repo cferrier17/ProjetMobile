@@ -8,6 +8,9 @@ import retrofit2.http.Query;
 
 public interface GerritAPI {
 
-    @GET("changes/")
-    Call<List<Change>> loadChanges(@Query("q") String status);
+    @GET("ability")
+    Call<AbilityResponse> getListAbility();
+
+    @GET("hero")
+    Call<HeroResponse> getListHero();
 }
