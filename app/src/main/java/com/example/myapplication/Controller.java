@@ -11,7 +11,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Controller implements Callback<AbilityResponse> {
+public class Controller {
 
     static final String BASE_URL =  "https://overwatch-api.net/api/v1/";
 
@@ -28,30 +28,44 @@ public class Controller implements Callback<AbilityResponse> {
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 
         Call<AbilityResponse> callAbility = gerritAPI.getListAbility();
-        callAbility.enqueue(this);
-
-        
-
-    }
-    @Override
-    public void onResponse(Call<AbilityResponse> call, Response<AbilityResponse> response) {
-        if(response.isSuccessful()) {
-            AbilityResponse response1 = response.body();
-            List<Ability> listAbilities = response1.getData();
+        callAbility.enqueue(new Callback<AbilityResponse>() {
+            @Override
+            public void onResponse(Call<AbilityResponse> call, Response<AbilityResponse> response) {
+                if(response.isSuccessful()) {
+                    AbilityResponse response1 = response.body();
+                    List<Ability> listAbilities = response1.getData();
 
 
 
-            for (Ability ability : listAbilities) {
-                System.out.println(ability.getName());
+                    for (Ability ability : listAbilities) {
+                        System.out.println(ability.getName());
+                    }
+
+                } else {
+                    System.out.println("Nay " + response.errorBody());
+                }
             }
 
-        } else {
-            System.out.println("Nay " + response.errorBody());
-        }
-    }
+            @Override
+            public void onFailure(Call<AbilityResponse> call, Throwable t) {
+                System.out.println("Nay ");
+            }
+        });
 
-    @Override
-    public void onFailure(Call<AbilityResponse> call, Throwable t) {
-        System.out.println("Nay ");
+        Call<HeroResponse> callHero = gerritAPI.getListHero();
+        callHero.enqueue(new Callback<HeroResponse>() {
+            @Override
+            public void onResponse(Call<HeroResponse> call, Response<HeroResponse> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<HeroResponse> call, Throwable t) {
+
+            }
+        });
+
+
+
     }
 }
