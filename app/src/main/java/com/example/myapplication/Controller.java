@@ -14,6 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Controller {
 
     static final String BASE_URL =  "https://overwatch-api.net/api/v1/";
+    private final MainActivity activity;
+
+    public Controller(MainActivity mainActivity) {
+        this.activity = mainActivity;
+    }
 
     public void start() {
         Gson gson = new GsonBuilder()
@@ -28,6 +33,7 @@ public class Controller {
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 
         Call<AbilityResponse> callAbility = gerritAPI.getListAbility();
+
         callAbility.enqueue(new Callback<AbilityResponse>() {
             @Override
             public void onResponse(Call<AbilityResponse> call, Response<AbilityResponse> response) {
@@ -35,12 +41,7 @@ public class Controller {
                     AbilityResponse response1 = response.body();
                     List<Ability> listAbilities = response1.getData();
 
-
-
-                    for (Ability ability : listAbilities) {
-                        System.out.println(ability.getName());
-                    }
-
+                    activity.showList(listAbilities);
                 } else {
                     System.out.println("Nay " + response.errorBody());
                 }
@@ -56,7 +57,17 @@ public class Controller {
         callHero.enqueue(new Callback<HeroResponse>() {
             @Override
             public void onResponse(Call<HeroResponse> call, Response<HeroResponse> response) {
+                if(response.isSuccessful()){
+                    HeroResponse response1 = response.body();
+                    List<Hero> listHeroes = response1.getData();
 
+                    for (Hero hero:listHeroes) {
+                        System.out.println(hero.getName());
+                    }
+                }
+                else{
+                    System.out.println("Nay" + response.errorBody());
+                }
             }
 
             @Override

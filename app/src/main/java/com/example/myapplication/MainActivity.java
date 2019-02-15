@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +19,20 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
+        Controller controller = new Controller(this);
+        controller.start();
+//
+//        final List<String> input = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            input.add("Test" + i);
+//        }
+        //showList(input);
 
 
+
+    }
+
+    public void showList(List<Ability> input) {
         // use this setting to
         // improve performance if you know that changes
         // in content do not change the layout size
@@ -30,27 +41,8 @@ public class MainActivity extends Activity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        final List<String> input = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            input.add("Test" + i);
-        }// define an adapter
-        mAdapter = new MyAdapter(input);
+        // define an adapter
+        mAdapter = new MyAbilityAdapter(input);
         recyclerView.setAdapter(mAdapter);
-
-        ItemTouchHelper.SimpleCallback simpleItemTouchCallback =
-                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-                    @Override
-                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder
-                            target) {
-                        return false;
-                    }
-                    @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                        input.remove(viewHolder.getAdapterPosition());
-                        mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                    }
-                };
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 }
