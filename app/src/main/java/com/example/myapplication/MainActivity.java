@@ -26,13 +26,13 @@ public class MainActivity extends Activity {
 //        for (int i = 0; i < 10; i++) {
 //            input.add("Test" + i);
 //        }
-        //showList(input);
+        //showListAbilities(input);
 
 
 
     }
 
-    public void showList(List<Ability> input) {
+    public void showListAbilities(List<Ability> input) {
         // use this setting to
         // improve performance if you know that changes
         // in content do not change the layout size
@@ -43,6 +43,25 @@ public class MainActivity extends Activity {
         recyclerView.setLayoutManager(layoutManager);
         // define an adapter
         mAdapter = new MyAbilityAdapter(input);
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    public void showListHeroes(List<Hero> input) {
+        // use this setting to
+        // improve performance if you know that changes
+        // in content do not change the layout size
+        // of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        // define an adapter
+        mAdapter = new MyHeroAdapter(input, new OnHeroClickListener() {
+            @Override
+            public void onHeroClick(Hero hero) {
+                System.out.println(hero.getId());
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 }

@@ -41,7 +41,7 @@ public class Controller {
                     AbilityResponse response1 = response.body();
                     List<Ability> listAbilities = response1.getData();
 
-                    activity.showList(listAbilities);
+                    //activity.showListAbilities(listAbilities);
                 } else {
                     System.out.println("Nay " + response.errorBody());
                 }
@@ -53,6 +53,7 @@ public class Controller {
             }
         });
 
+
         Call<HeroResponse> callHero = gerritAPI.getListHero();
         callHero.enqueue(new Callback<HeroResponse>() {
             @Override
@@ -61,9 +62,7 @@ public class Controller {
                     HeroResponse response1 = response.body();
                     List<Hero> listHeroes = response1.getData();
 
-                    for (Hero hero:listHeroes) {
-                        System.out.println(hero.getName());
-                    }
+                    activity.showListHeroes(listHeroes);
                 }
                 else{
                     System.out.println("Nay" + response.errorBody());
