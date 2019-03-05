@@ -20,7 +20,7 @@ public class Controller {
         this.activity = mainActivity;
     }
 
-    public void start() {
+    public void start() { //TODO: implementer singleton pour gson et retrofit
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();

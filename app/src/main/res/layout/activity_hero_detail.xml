@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".heroDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="104dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginLeft="39dp"
+            android:text="Name"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="30dp" />
+
+        <TextView
+            android:id="@+id/textViewAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age"
+            tools:layout_editor_absoluteX="213dp"
+            tools:layout_editor_absoluteY="30dp" />
+
+        <TextView
+            android:id="@+id/textViewRealName"
+            android:layout_width="104dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:text="RealName"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <TextView
+            android:id="@+id/textViewDesc"
+            android:layout_width="383dp"
+            android:layout_height="473dp"
+            android:text="Description"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="204dp" />
+
+        <TextView
+            android:id="@+id/textViewHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hp"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="356dp" />
+
+        <TextView
+            android:id="@+id/textViewArmor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Armor"
+            tools:layout_editor_absoluteX="244dp"
+            tools:layout_editor_absoluteY="356dp" />
+
+        <TextView
+            android:id="@+id/textViewDifficulty"
+            android:layout_width="331dp"
+            android:layout_height="63dp"
+            android:text="Difficulty"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="575dp" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

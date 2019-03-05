@@ -7,6 +7,7 @@ class Hero {
     private String name;
     private String description;
     private int health;
+    private int armour;
     private int shield;
     private String real_name;
     private int age;
@@ -71,5 +72,13 @@ class Hero {
 
     public ArrayList<Ability> getAbilities() {
         return abilities;
+    }
+
+    public int getArmour() {
+        return armour;
+    }
+
+    public void setArmour(int armour) {
+        this.armour = armour;
     }
 }
