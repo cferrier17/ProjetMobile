@@ -1,13 +1,15 @@
-package com.example.myapplication;
+package com.example.myapplication.View;
 
 import java.util.List;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.myapplication.Model.Ability;
+import com.example.myapplication.R;
 
 public class MyAbilityAdapter extends RecyclerView.Adapter<MyAbilityAdapter.ViewHolder> {
     private List<Ability> values;

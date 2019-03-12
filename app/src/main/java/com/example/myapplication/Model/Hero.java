@@ -1,8 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
 import java.util.ArrayList;
 
-class Hero {
+public class Hero {
     private int id;
     private String name;
     private String description;

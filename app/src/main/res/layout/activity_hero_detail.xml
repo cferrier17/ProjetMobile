@@ -4,72 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".heroDetailActivity">
+    tools:context=".View.heroDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textViewName"
-            android:layout_width="104dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="39dp"
-            android:layout_marginLeft="39dp"
-            android:text="Name"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="104dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginLeft="39dp"
+                android:text="Name"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="30dp" />
+
+            <TextView
+                android:id="@+id/textViewRealName"
+                android:layout_width="206dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:text="RealName"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="83dp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textViewAge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="31dp"
             android:text="Age"
             tools:layout_editor_absoluteX="213dp"
             tools:layout_editor_absoluteY="30dp" />
 
         <TextView
-            android:id="@+id/textViewRealName"
-            android:layout_width="104dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:text="RealName"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="83dp" />
-
-        <TextView
             android:id="@+id/textViewDesc"
-            android:layout_width="383dp"
-            android:layout_height="473dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:text="Description"
             tools:layout_editor_absoluteX="39dp"
             tools:layout_editor_absoluteY="204dp" />
 
-        <TextView
-            android:id="@+id/textViewHp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hp"
-            tools:layout_editor_absoluteX="72dp"
-            tools:layout_editor_absoluteY="356dp" />
+        <LinearLayout
+            android:layout_width="425dp"
+            android:layout_height="81dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewArmor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Armor"
-            tools:layout_editor_absoluteX="244dp"
-            tools:layout_editor_absoluteY="356dp" />
+            <TextView
+                android:id="@+id/textViewHp"
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
+                android:text="Hp"
+                tools:layout_editor_absoluteX="72dp"
+                tools:layout_editor_absoluteY="356dp" />
+
+            <TextView
+                android:id="@+id/textViewArmor"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:text="Armor"
+                tools:layout_editor_absoluteX="244dp"
+                tools:layout_editor_absoluteY="356dp" />
+
+            <TextView
+                android:id="@+id/textViewShield"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:text="Shield" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="96dp"
+            android:orientation="horizontal"/>
 
         <TextView
             android:id="@+id/textViewDifficulty"
-            android:layout_width="331dp"
-            android:layout_height="63dp"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
             android:text="Difficulty"
-            tools:layout_editor_absoluteX="54dp"
-            tools:layout_editor_absoluteY="575dp" />
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="546dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:orientation="horizontal"></LinearLayout>
 
     </LinearLayout>
 

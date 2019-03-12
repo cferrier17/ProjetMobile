@@ -1,27 +1,35 @@
-package com.example.myapplication;
+package com.example.myapplication.View;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
+import com.example.myapplication.Controller.Controller;
+import com.example.myapplication.Model.Ability;
+import com.example.myapplication.Model.Hero;
+import com.example.myapplication.R;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    private MediaPlayer ring;
+    private boolean isMusicOn=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+
+        ring = MediaPlayer.create(MainActivity.this, R.raw.ring);
+        onOffMusic();
 
         Controller controller = new Controller(this);
         controller.start();
@@ -56,7 +64,7 @@ public class MainActivity extends Activity {
         // define an adapter
         mAdapter = new MyHeroAdapter(input, new OnHeroClickListener() {
             @Override
-            public void onHeroClick(Hero hero) {    //TODO: gerer le onclick pour lancer la nouvelle activité qui créera un nouveau type de controleur pour les détails, voir javadoc retrofit
+            public void onHeroClick(Hero hero) {
                 //System.out.println(hero.getId());
                 heroDetail(hero);
             }
@@ -70,5 +78,18 @@ public class MainActivity extends Activity {
         Gson gson = new Gson();
         heroIntent.putExtra("key", gson.toJson(hero));
         startActivity(heroIntent);
+    }
+
+    public void onOffMusic(){
+        if(isMusicOn){
+            ring.stop();
+            ring.reset();
+        }
+        else{
+            ring.setLooping(true);
+            ring.start();
+        }
+
+        isMusicOn = !isMusicOn;
     }
 }

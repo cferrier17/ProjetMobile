@@ -1,10 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.Controller;
 
-import java.util.List;
+import com.example.myapplication.Model.AbilityResponse;
+import com.example.myapplication.Model.HeroResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 public interface GerritAPI {
 

@@ -1,6 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Model;
 
-class Ability {
+public class Ability {
     private int id;
     private String name;
     private String description;
