@@ -40,14 +40,11 @@ public class Controller {
     }
 
     public void start() { //TODO: implementer singleton pour gson et retrofit
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
+        Util util = new Util();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+        Gson gson = util.getGson();
+
+        Retrofit retrofit = util.getRetrofit(BASE_URL);
 
         GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
 

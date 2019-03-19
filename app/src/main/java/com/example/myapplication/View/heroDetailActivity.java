@@ -2,6 +2,7 @@ package com.example.myapplication.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Model.Hero;
@@ -24,6 +25,7 @@ public class heroDetailActivity extends AppCompatActivity {
         TextView textViewShield = (TextView) findViewById(R.id.textViewShield);
         TextView textViewArmor = (TextView) findViewById(R.id.textViewArmor);
         TextView textViewDifficulty= (TextView) findViewById(R.id.textViewDifficulty);
+        ImageView imageViewDifficulty = (ImageView) findViewById(R.id.imageViewDifficulty);
 
         Gson gson = new Gson();
 
@@ -38,6 +40,16 @@ public class heroDetailActivity extends AppCompatActivity {
         textViewShield.setText("Shield : " + Integer.toString(hero.getShield()));
         textViewArmor.setText("Armour : " + Integer.toString(hero.getArmour()));
         textViewDifficulty.setText("Difficulty : " + Integer.toString(hero.getDifficulty()));
+
+        switch(hero.getDifficulty()){
+            case 2:
+                imageViewDifficulty.setImageResource(R.drawable.deuxetoiles);
+                break;
+            case 3:
+                imageViewDifficulty.setImageResource(R.drawable.troisetoiles);
+                break;
+
+        }
 
 
 
