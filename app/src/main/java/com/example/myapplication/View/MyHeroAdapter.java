@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Model.Hero;
@@ -22,6 +23,7 @@ public class MyHeroAdapter extends RecyclerView.Adapter<MyHeroAdapter.ViewHolder
         public TextView txtHeader;
         public TextView txtFooter;
         public View layout;
+        public ImageView imageView;
 
         public ViewHolder(View v) {
             super(v);
@@ -77,15 +79,11 @@ public class MyHeroAdapter extends RecyclerView.Adapter<MyHeroAdapter.ViewHolder
         final Hero hero = values.get(position);
         holder.txtHeader.setText(hero.getName());
         holder.txtFooter.setText(hero.getDescription());
+
+
         holder.bind(hero,listener);
 
 
-//        holder.txtHeader.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                remove(position);
-//            }
-//        });
 
     }
 

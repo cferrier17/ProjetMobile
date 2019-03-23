@@ -12,14 +12,12 @@ import com.example.myapplication.Model.Hero;
 import com.example.myapplication.Model.HeroResponse;
 import com.example.myapplication.View.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -40,13 +38,9 @@ public class Controller {
     }
 
     public void start() { //TODO: implementer singleton pour gson et retrofit
-        Util util = new Util();
-
-        Gson gson = util.getGson();
-
-        Retrofit retrofit = util.getRetrofit(BASE_URL);
-
-        GerritAPI gerritAPI = retrofit.create(GerritAPI.class);
+        Gson gson = Util.getGson();
+        Retrofit retrofit = Util.getRetrofit(BASE_URL);
+        GerritAPI gerritAPI = Util.getGerritAPI();
 
 
 
@@ -84,7 +78,7 @@ public class Controller {
         sharedPreferences = activity.getSharedPreferences(PREFS, MODE_PRIVATE);
 
         if( sharedPreferencesEmpty() ){
-            callAPI(gerritAPI);
+            callAPIHeroList(gerritAPI);
         }
         else{
             String listHeroGson = getSharedPreferences("listHeroes");
@@ -99,7 +93,7 @@ public class Controller {
 
     }
 
-    private void callAPI(GerritAPI gerritAPI) {
+    private void callAPIHeroList(GerritAPI gerritAPI) {
         Call<HeroResponse> callHero = gerritAPI.getListHero();
         callHero.enqueue(new Callback<HeroResponse>() {
             @Override
@@ -120,7 +114,6 @@ public class Controller {
 
                 }
                 else{
-                    //System.out.println("Nay" + response.errorBody());
                     new AlertDialog.Builder(activity)
                             .setTitle("Error in API call")
                             .setMessage("Press OK to close the app, and try later.")

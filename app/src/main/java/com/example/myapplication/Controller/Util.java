@@ -7,15 +7,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Util {
-    private static Gson gson;
-    private static Retrofit retrofit;
+    private static Gson gson = null;
+    private static Retrofit retrofit = null;
+    private static GerritAPI gerritAPI = null;
 
-    public Util(){
-        gson = null;
-        retrofit = null;
-    }
-
-    public Gson getGson(){
+    public static Gson getGson(){
         if( gson == null){
             gson = new GsonBuilder()
                     .setLenient()
@@ -25,7 +21,7 @@ public class Util {
         return gson;
     }
 
-    public Retrofit getRetrofit(String baseURL){
+    public static Retrofit getRetrofit(String baseURL){
         if( retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseURL)
@@ -34,4 +30,12 @@ public class Util {
         }
         return retrofit;
     }
+
+    public static GerritAPI getGerritAPI(){
+        if( gerritAPI == null)
+            gerritAPI = retrofit.create(GerritAPI.class);
+
+        return gerritAPI;
+    }
+
 }
