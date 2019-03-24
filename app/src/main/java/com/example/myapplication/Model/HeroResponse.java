@@ -1,6 +1,5 @@
 package com.example.myapplication.Model;
 
-import com.example.myapplication.Model.Hero;
 
 import java.util.List;
 

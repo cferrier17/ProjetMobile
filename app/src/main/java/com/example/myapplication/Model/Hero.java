@@ -1,6 +1,5 @@
 package com.example.myapplication.Model;
 
-import java.util.ArrayList;
 
 public class Hero {
     private int id;
@@ -14,9 +13,8 @@ public class Hero {
     private String affiliation;
     private String base_of_operations;
     private int difficulty;
-    private ArrayList<Ability> abilities;
 
-    public Hero(int id, String name, String description, int health, int shield, String real_name, int age, String affiliation, String base_of_operations, int difficulty, ArrayList<Ability> abilities) {
+    public Hero(int id, String name, String description, int health, int shield, String real_name, int age, String affiliation, String base_of_operations, int difficulty) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,7 +25,6 @@ public class Hero {
         this.affiliation = affiliation;
         this.base_of_operations = base_of_operations;
         this.difficulty = difficulty;
-        this.abilities = abilities;
     }
 
     public int getId() {
@@ -68,10 +65,6 @@ public class Hero {
 
     public int getDifficulty() {
         return difficulty;
-    }
-
-    public ArrayList<Ability> getAbilities() {
-        return abilities;
     }
 
     public int getArmour() {

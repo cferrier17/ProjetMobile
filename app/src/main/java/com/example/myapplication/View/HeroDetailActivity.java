@@ -5,17 +5,23 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.Controller.Controller;
 import com.example.myapplication.Model.Hero;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
 
-public class heroDetailActivity extends AppCompatActivity {
+public class HeroDetailActivity extends AppCompatActivity {
     //TODO: autre appel API pour obtenir les sorts du hero
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hero_detail);
         String heroGsonString = getIntent().getStringExtra("key");
+
+        Gson gson = new Gson();
+
+
+        Hero hero = gson.fromJson(heroGsonString, Hero.class);
 
         TextView textViewName = (TextView) findViewById(R.id.textViewName);
         TextView textViewAge = (TextView) findViewById(R.id.textViewAge);
@@ -27,11 +33,6 @@ public class heroDetailActivity extends AppCompatActivity {
         TextView textViewDifficulty= (TextView) findViewById(R.id.textViewDifficulty);
         ImageView imageViewDifficulty = (ImageView) findViewById(R.id.imageViewDifficulty);
 
-        Gson gson = new Gson();
-
-
-        Hero hero = gson.fromJson(heroGsonString, Hero.class);
-
         textViewName.setText("Name : " + hero.getName());
         textViewAge.setText("Age : " + Integer.toString(hero.getAge()));
         textViewRealName.setText("Real name : " + hero.getReal_name());
@@ -39,7 +40,6 @@ public class heroDetailActivity extends AppCompatActivity {
         textViewHp.setText("HP : " + Integer.toString(hero.getHealth()));
         textViewShield.setText("Shield : " + Integer.toString(hero.getShield()));
         textViewArmor.setText("Armour : " + Integer.toString(hero.getArmour()));
-        textViewDifficulty.setText("Difficulty : " + Integer.toString(hero.getDifficulty()));
 
         switch(hero.getDifficulty()){
             case 2:

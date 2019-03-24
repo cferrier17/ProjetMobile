@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.heroDetailActivity">
+    tools:context=".View.HeroDetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -92,8 +92,8 @@
         <TextView
             android:id="@+id/textViewDifficulty"
             android:layout_width="match_parent"
-            android:layout_height="133dp"
-            android:text="Difficulty"
+            android:layout_height="wrap_content"
+            android:text="Difficulty :"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="546dp" />
 

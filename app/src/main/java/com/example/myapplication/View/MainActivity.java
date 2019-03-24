@@ -8,12 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.myapplication.Controller.Controller;
-import com.example.myapplication.Model.Ability;
 import com.example.myapplication.Model.Hero;
 import com.example.myapplication.R;
 import com.google.gson.Gson;
 
 import java.util.List;
+
 
 public class MainActivity extends Activity {
     private RecyclerView recyclerView;
@@ -32,25 +32,10 @@ public class MainActivity extends Activity {
         onOffMusic();
 
         Controller controller = new Controller(this);
-        controller.start();
-
-
+        controller.startHero();
 
     }
 
-    public void showListAbilities(List<Ability> input) {
-        // use this setting to
-        // improve performance if you know that changes
-        // in content do not change the layout size
-        // of the RecyclerView
-        recyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        // define an adapter
-        mAdapter = new MyAbilityAdapter(input);
-        recyclerView.setAdapter(mAdapter);
-    }
 
     public void showListHeroes(List<Hero> input) {
         // use this setting to
@@ -74,7 +59,7 @@ public class MainActivity extends Activity {
 
 
     public void heroDetail(Hero hero){
-        Intent heroIntent = new Intent(this, heroDetailActivity.class);
+        Intent heroIntent = new Intent(this, HeroDetailActivity.class);
         Gson gson = new Gson();
         heroIntent.putExtra("key", gson.toJson(hero));
         startActivity(heroIntent);

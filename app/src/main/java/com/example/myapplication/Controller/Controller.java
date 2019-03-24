@@ -11,6 +11,7 @@ import java.util.List;
 import com.example.myapplication.Model.Hero;
 import com.example.myapplication.Model.HeroResponse;
 import com.example.myapplication.View.MainActivity;
+import com.example.myapplication.View.HeroDetailActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -24,8 +25,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class Controller {
 
     static final String BASE_URL =  "https://overwatch-api.net/api/v/";
-    private final MainActivity activity;
-
+    private MainActivity mainActivity;
+    private HeroDetailActivity heroDetailActivity;
 
     private SharedPreferences sharedPreferences;
     private static final String PREFS = "PREFS";
@@ -34,48 +35,20 @@ public class Controller {
 
 
     public Controller(MainActivity mainActivity) {
-        this.activity = mainActivity;
+        this.mainActivity = mainActivity;
     }
 
-    public void start() { //TODO: implementer singleton pour gson et retrofit
+    public Controller(HeroDetailActivity heroDetailActivity) {
+        this.heroDetailActivity = heroDetailActivity;
+    }
+
+    public void startHero() {
         Gson gson = Util.getGson();
         Retrofit retrofit = Util.getRetrofit(BASE_URL);
         GerritAPI gerritAPI = Util.getGerritAPI();
 
+        sharedPreferences = mainActivity.getSharedPreferences(PREFS, MODE_PRIVATE);
 
-
-
-        /**
-         * Ability call
-         */
-/*
-        Call<AbilityResponse> callAbility = gerritAPI.getListAbility();
-
-        callAbility.enqueue(new Callback<AbilityResponse>() {
-            @Override
-            public void onResponse(Call<AbilityResponse> call, Response<AbilityResponse> response) {
-                if(response.isSuccessful()) {
-                    AbilityResponse response1 = response.body();
-                    List<Ability> listAbilities = response1.getData();
-
-                    //activity.showListAbilities(listAbilities);
-                } else {
-                    System.out.println("Nay " + response.errorBody());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<AbilityResponse> call, Throwable t) {
-                System.out.println("Nay ");
-            }
-        });
-*/
-
-        /**
-         * Hero call
-         */
-
-        sharedPreferences = activity.getSharedPreferences(PREFS, MODE_PRIVATE);
 
         if( sharedPreferencesEmpty() ){
             callAPIHeroList(gerritAPI);
@@ -85,11 +58,8 @@ public class Controller {
 
             Type typeOfObjectsListNew = new TypeToken< List<Hero>>() {}.getType();
             List<Hero> listHeroes = gson.fromJson(listHeroGson, typeOfObjectsListNew);
-            activity.showListHeroes(listHeroes);
+            mainActivity.showListHeroes(listHeroes);
         }
-
-
-
 
     }
 
@@ -102,7 +72,7 @@ public class Controller {
                     HeroResponse response1 = response.body();
                     List<Hero> listHeroes = response1.getData();
 
-                    activity.showListHeroes(listHeroes);
+                    mainActivity.showListHeroes(listHeroes);
 
                     Gson gson = new Gson();
                     String stringHeroes= gson.toJson(listHeroes);
@@ -114,14 +84,14 @@ public class Controller {
 
                 }
                 else{
-                    new AlertDialog.Builder(activity)
+                    new AlertDialog.Builder(mainActivity)
                             .setTitle("Error in API call")
                             .setMessage("Press OK to close the app, and try later.")
                             // Specifying a listener allows you to take an action before dismissing the dialog.
                             // The dialog is automatically dismissed when a dialog button is clicked.
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    activity.finish();
+                                    mainActivity.finish();
                                 }
                             })
 
@@ -135,10 +105,12 @@ public class Controller {
             @Override
             public void onFailure(Call<HeroResponse> call, Throwable t) {
 
-                Toast.makeText(activity,"API Call failure", Toast.LENGTH_LONG).show();
+                Toast.makeText(mainActivity,"API Call failure", Toast.LENGTH_LONG).show();
             }
         });
     }
+
+
 
     private boolean sharedPreferencesEmpty() {
         return !sharedPreferences.contains("listHeroes");
