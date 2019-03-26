@@ -23,9 +23,9 @@ Dans le cadre de notre première année de cycle ingénieur à l'ESIEA, il nous 
 
 ### Première activité
 C'est une simple liste, utilisant recycler view, affichant une liste des héros de Overwatch.
-![screen1ere](https://www.noelshack.com/2019-13-2-1553637155-55916162-396207411161270-724943758910554112-n.jpg)
+![screen1ere](https://image.noelshack.com/fichiers/2019/13/2/1553637155-55916162-396207411161270-724943758910554112-n.jpg)
 
 ### Seconde activité
 Cette activité affiche les détails du héro concernés. 
 Les étoiles changent selon la difficulté du héro.
-![screen2nde](https://www.noelshack.com/2019-13-2-1553637155-55736593-1006023999589219-6250559832508596224-n.jpg)
+![screen2nde](https://image.noelshack.com/fichiers/2019/13/2/1553637155-55736593-1006023999589219-6250559832508596224-n.jpg)
